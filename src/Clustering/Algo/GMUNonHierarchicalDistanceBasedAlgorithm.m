@@ -26,8 +26,6 @@
 #import "GMUWrappingDictionaryKey.h"
 #import "GQTPointQuadTree.h"
 
-static const NSUInteger kGMUClusterDistancePoints = 100;
-static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] space.
 
 #pragma mark Utilities Classes
 
@@ -87,6 +85,9 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
     _items = [[NSMutableArray alloc] init];
     GQTBounds bounds = {-1, -1, 1, 1};
     _quadTree = [[GQTPointQuadTree alloc] initWithBounds:bounds];
+    [self setKGMUClusterDistancePoints: 100];
+    [self setKGMUMapPointWidth: 2.0];
+    [self setKGMUDelta: 8.0];
   }
   return self;
 }
@@ -139,7 +140,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 
     // Query for items within a fixed point distance from the current item to make up a cluster
     // around it.
-    double radius = kGMUClusterDistancePoints * kGMUMapPointWidth / pow(2.0, zoom + 8.0);
+    double radius = _kGMUClusterDistancePoints * _kGMUMapPointWidth / pow(2.0, zoom + _kGMUDelta);
     GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
     NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
     for (GMUClusterItemQuadItem *quadItem in nearbyItems) {

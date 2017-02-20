@@ -29,5 +29,7 @@
  * Clusters have the center of the first element (not the centroid of the items within it).
  */
 @interface GMUNonHierarchicalDistanceBasedAlgorithm : NSObject<GMUClusterAlgorithm>
-
+    @property (readwrite) const NSUInteger kGMUClusterDistancePoints;
+    @property (readwrite) const double kGMUMapPointWidth;  // MapPoint is in a [-1,1]x[-1,1] space.
+    @property (readwrite) const double kGMUDelta;
 @end
