@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Google-Maps-iOS-Utils"
-  s.version      = "1.1.2"
+  s.version      = "2.1.0"
   s.summary      = "A utilities library for use with Google Maps SDK for iOS."
   s.description  = <<-DESC
                    This library contains classes that are useful for a wide range of applications
@@ -28,4 +28,12 @@ Pod::Spec.new do |s|
     sp.dependency 'Google-Maps-iOS-Utils/QuadTree'
   end
 
+  s.subspec 'Geometry' do |sp|
+    sp.source_files = 'src/Geometry/**/*.{h,m}'
+  end
+
+  s.subspec 'Heatmap' do |sp|
+    sp.source_files = 'src/Heatmap/**/*.{h,m}'
+    sp.dependency 'Google-Maps-iOS-Utils/QuadTree'
+  end
 end

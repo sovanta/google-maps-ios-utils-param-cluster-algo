@@ -1,5 +1,10 @@
 Integrating with Swift projects which use 'use_frameworks!' in the Podfile
 ==========================================================================
+
+**Note:** These instructions are only for the case where you have a `PodFile`
+that declares `use_frameworks!` in it. If your `Podfile` doesn't have 
+`use_frameworks!` in it, please use the `Google-Maps-iOS-Utils` cocoapod directly.
+
 It is a known issue that adding the utility library to a Podfile which has
 'use_frameworks!' will cause the error, "target has transitive dependencies
 that include static binaries". Until GoogleMaps is a dynamic framework (when we
@@ -11,8 +16,11 @@ to work around the issue.
 - In your project create a group named 'Google-Maps-iOS-Utils'.
 - Download the repo into your local computer.
 - Add the folders inside the src directory into your project by right clicking
-on the 'Google-Maps-iOS-Utils' group and selecting "Add Files to ..." (Make sure
-you select the target as your app target to avoid undefined symbols issue).
+on the 'Google-Maps-iOS-Utils' group and selecting "Add Files to ..." 
+- Expand the 'options' tab in the file explorer, use the following settings:
+  + 'Copy items if needed' should be deselected
+  + 'Added folders' should be set to 'Create groups'
+  + 'Add to targets' should be set to your app target to avoid undefined symbols issues
 - Make sure "Use Header Map" is ON for your app target in XCode Settings (it is
 ON by default in XCode).
 - Add a bridging header file with ```#import "GMUMarkerClustering.h"``` (*note
